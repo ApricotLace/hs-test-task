@@ -12,8 +12,20 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  lint:
+  build:
+    
     runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: lein deps
+    - name: Run tests
+      run: lein test
+  lint:
+    
+    runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v2
     - uses: DeLaGuardo/clojure-lint-action@master
