@@ -2,6 +2,7 @@
   (:require [clojure.test :refer :all]
             [hs-test-task.views.patient-card :refer [build-patientcard]]
             [hs-test-task.models.migration :refer [migrated?-query]]
+            [clojure.string]
             [hs-test-task.models.patient :refer [date-map->sql-date
                                                  str-date->date-map
                                                  form-data->patient-model

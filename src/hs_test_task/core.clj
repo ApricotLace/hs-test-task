@@ -1,7 +1,5 @@
 (ns hs-test-task.core
-  (:require [compojure.core :refer [defroutes GET]]
-            [org.httpkit.server :as hk]
-            [hs-test-task.views.layout :refer [render-layout]]
+  (:require [org.httpkit.server :as hk]
             [hs-test-task.models.migration :refer [migrate]]
             [environ.core :refer [env]]
             [hs-test-task.controllers.patient :refer [routes]]

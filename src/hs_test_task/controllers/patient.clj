@@ -4,6 +4,7 @@
             [hs-test-task.models.patient :as model]
             [hs-test-task.views.layout :refer [render-layout]]
             [formative.parse :as fp]
+            [clojure.string]
             [ring.util.response :as response]
             [hs-test-task.views.blank-patients-list :refer [render-blank-patients-list]]
             [hs-test-task.views.404 :refer [build-404-page]]
