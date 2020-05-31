@@ -6,7 +6,7 @@
             [clj-time.coerce :as coerce]
             [environ.core :refer [env]]))
 
-(def db-spec (env :database_url "postgres://localhost:5432/patients"))
+(def db-spec (env :database-url "postgres://localhost:5432/patients"))
 
 (defn patient->vals [patient]
   [(:date_of_birth patient)

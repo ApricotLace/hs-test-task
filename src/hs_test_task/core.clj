@@ -1,13 +1,17 @@
 (ns hs-test-task.core
-  (:require [org.httpkit.server :as hk]
+  (:require [ring.adapter.jetty :as jetty]
             [hs-test-task.models.migration :refer [migrate]]
             [environ.core :refer [env]]
             [hs-test-task.controllers.patient :refer [routes]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults secure-site-defaults]])
+  (:gen-class))
 
+(def application (wrap-defaults routes (assoc secure-site-defaults
+                                              :session {:flash true}
+                                              :proxy true
+                                              :security {:anti-forgery false})))
 (defn -main []
   (migrate)
-  (hk/run-server (wrap-defaults routes (assoc site-defaults
-                                              :session {:flash true}
-                                              :security {:anti-forgery false}))
-                 {:port (env :port 7000)}))
+  (try
+    (jetty/run-jetty application {:port (Integer. (env :port 7000)) :join? false})
+    (catch Exception e (println e))))
