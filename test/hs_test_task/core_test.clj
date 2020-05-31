@@ -27,6 +27,10 @@
                :error-message "A field error-message"
                :error-message-pluralized "A, B fields error-message"})
 
+(deftest fail
+  (testing "Fail, ci test"
+    (is (= 1 0))))
+
 (deftest pcard-render
   (testing "Should render correctly"
     (is (= (html (build-patientcard (:patient fixtures)))
