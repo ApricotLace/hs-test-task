@@ -33,12 +33,12 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build image
       if: success()
-      run: docker build -t apricotlace/hs-test-task:latest .
+      run: docker build -t  profunctorlense/hs-test-task.
     - name: Push to docker hub
       if: success()
       uses: actions-hub/docker@master
       with:
-        args: push apricotlace/hs-test-task:latest
+        args: push profunctorlense/hs-test-task:latest
   lint:
     
     runs-on: ubuntu-latest
