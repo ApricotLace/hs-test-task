@@ -22,6 +22,11 @@ jobs:
       run: lein deps
     - name: Run tests
       run: lein test
+    - name: Build
+      if: success()
+      run: lein uberjar
+    - name: PRINT
+      run: echo $GITHUB_REPOSITORY
   lint:
     
     runs-on: ubuntu-latest
