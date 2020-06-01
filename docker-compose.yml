@@ -15,6 +15,4 @@ services:
       - '7000:7000'
     environment:
       - "database-url=postgresql://user:password@postgres:5432/patients"
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: 'profunctorlense/hs-test-task:latest'
