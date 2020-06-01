@@ -1,0 +1,20 @@
+version: '3.0'
+services:
+  postgres:
+    restart: 'always'
+    environment:
+      - "POSTGRES_USER=user"
+      - "POSTGRES_DB=patients"
+      - "POSTGRES_PASSWORD=password"
+    volumes:
+      - /tmp/postgresdata:/var/lib/postgresql/data
+    image: 'postgres:alpine'
+  patients:
+    restart: 'always'
+    ports:
+      - '7000:7000'
+    environment:
+      - "database-url=postgresql://user:password@postgres:5432/patients"
+    build:
+      context: .
+      dockerfile: Dockerfile
