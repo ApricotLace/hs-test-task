@@ -26,7 +26,7 @@ jobs:
       if: success()
       run: lein uberjar
     - name: PRINT
-      run: pwd
+      run: ls target
   lint:
     
     runs-on: ubuntu-latest
