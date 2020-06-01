@@ -33,7 +33,7 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build image
       if: success()
-      run: docker build -t  profunctorlense/hs-test-task.
+      run: docker build -t  profunctorlense/hs-test-task:latest .
     - name: Push to docker hub
       if: success()
       uses: actions-hub/docker@master
