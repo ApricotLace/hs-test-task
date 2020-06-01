@@ -26,7 +26,7 @@ jobs:
       if: success()
       run: lein uberjar
     - name: PRINT
-      run: ls target
+      run: echo $GITHUB_REPOSITORY
   lint:
     
     runs-on: ubuntu-latest
