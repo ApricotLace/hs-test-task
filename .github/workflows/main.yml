@@ -33,12 +33,12 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build image
       if: success()
-      run: docker build -t ${GITHUB_REPOSITORY}:latest .
+      run: docker build -t apricotLace/hs-test-task:latest:latest .
     - name: Push to docker hub
       if: success()
       uses: actions-hub/docker@master
       with:
-        args: push ${GITHUB_REPOSITORY}:latest
+        args: push apricotLace/hs-test-task:latest:latest
   lint:
     
     runs-on: ubuntu-latest
