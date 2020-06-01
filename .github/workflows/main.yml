@@ -25,6 +25,8 @@ jobs:
     - name: Build
       if: success()
       run: lein uberjar
+    - name: PRINT
+      run: pwd
   lint:
     
     runs-on: ubuntu-latest
