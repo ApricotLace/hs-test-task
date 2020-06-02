@@ -6,8 +6,6 @@ services:
       - "POSTGRES_USER=user"
       - "POSTGRES_DB=patients"
       - "POSTGRES_PASSWORD=password"
-    volumes:
-      - /tmp/postgresdata:/var/lib/postgresql/data
     image: 'postgres:alpine'
   patients:
     restart: 'always'
