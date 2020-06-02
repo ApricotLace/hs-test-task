@@ -23,7 +23,7 @@
         [:a {:href "/add-patient" :class "nav-link"} "Add patient"]]]]
      [:main {:class "container p-5"}
       [:div {:class (:message-style flash)
-             :style (hide? flash)} (:message flash)
+             :style (str (hide? flash) "white-space: pre;")} (:message flash)
        [:button {:type "button" :class "close" :data-dismiss "alert"}
         [:span "&times;"]]]
       content]]))

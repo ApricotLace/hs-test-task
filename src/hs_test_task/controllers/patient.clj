@@ -26,10 +26,18 @@
       (clojure.string/replace #"[_-]" " ")
       clojure.string/capitalize))
 
-(defn build-error-message [[{:keys [keys msg]}]]
-  (let [labels (map #(keyword->field-label %) keys)
-        pluralize? (> (count labels) 1)]
-    (str (clojure.string/join ", " labels) (if pluralize? " fields " " field ") msg)))
+(defn build-error-message [problems]
+  (reduce
+    (fn [acc {:keys [keys msg]}]
+      (let [labels (map #(keyword->field-label %) keys)
+            pluralize? (> (count labels) 1)]
+        (str acc
+             (str (clojure.string/join ", " labels)
+                  (if pluralize? " fields " " field ")
+                  msg)
+             "\n")))
+    ""
+    problems))
 
 (defn validate-form [form-data redirect-url skip-uniqueness-check?]
   (let [discarded-form (fp/with-fallback

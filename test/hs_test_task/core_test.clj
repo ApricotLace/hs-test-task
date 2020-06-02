@@ -24,8 +24,8 @@
                            :full-name "Evgeny Andreevich Mukha"
                            :gender "Male"
                            :health-insurance-card-id "123123"}
-               :error-message "A field error-message"
-               :error-message-pluralized "A, B fields error-message"})
+               :error-message "A field error-message\n"
+               :error-message-pluralized "A, B fields error-message\n"})
 
 (deftest pcard-render
   (testing "Should render correctly"
