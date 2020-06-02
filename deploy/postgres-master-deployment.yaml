@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-master
+spec:
+  selector:
+    matchLabels:
+      app: postgres-master
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: postgres-master
+        tier: backend
+    spec:
+      containers:
+        - name: postgres-master
+          image: postgres:alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              value: "password"
+            - name: POSTGRES_DB
+              value: "patients"
+            - name: POSTGRES_USER
+              value: "user"

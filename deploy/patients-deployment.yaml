@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patients
+spec:
+  selector:
+    matchLabels:
+      app: hs-task
+      tier: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hs-task
+        tier: backend
+    spec:
+      containers:
+        - name: app
+          image: profunctorlense/hs-test-task:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 7000
+          env:
+            - name: database-url
+              value: postgresql://user:password@postgres-master.apricotlace:5432/patients
