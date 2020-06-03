@@ -41,15 +41,15 @@ jobs:
         args: push profunctorlense/hs-test-task:latest
     - name: Create kubectl config
       if: success()
-      run: mkdir ~/.kube && $KUBE_CONFIG | base64 -d > ~/.kube/config
+      run: $KUBE_CONFIG | base64 -d > kubeconfig
     - name: print
-      run: cat ~/.kube/config
+      run: cat kubeconfig && ls
     - name: Delete deployments/services on KubeSail
       if: success()
-      run: kubectl delete all --all
+      run: kubectl --kubeconfig kubeconfig delete all --all
     - name: Deploy to KubeSail
       if: success()
-      run: kubectl apply -f deploy/postgres-master-deployment.yaml,deploy/postgres-master-service.yaml,deploy/patients-deployment.yaml,deploy/patients-service.yaml
+      run: kubectl --kubeconfig kubeconfig apply -f deploy/postgres-master-deployment.yaml,deploy/postgres-master-service.yaml,deploy/patients-deployment.yaml,deploy/patients-service.yaml
       
   lint:
     
