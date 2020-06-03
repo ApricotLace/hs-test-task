@@ -39,6 +39,16 @@ jobs:
       uses: actions-hub/docker@master
       with:
         args: push profunctorlense/hs-test-task:latest
+    - name: Create kubectl config
+      if: success()
+      run: mkdir ~/.kube && $KUBE_CONFIG | base64 -d > ~/.kube/config
+    - name: Delete deployments/services on KubeSail
+      if: success()
+      run: kubectl delete all --all
+    - name: Deploy to KubeSail
+      if: success()
+      run: kubectl apply -f deploy/postgres-master-deployment.yaml,deploy/postgres-master-service.yaml,deploy/patients-deployment.yaml,deploy/patients-service.yaml
+      
   lint:
     
     runs-on: ubuntu-latest
