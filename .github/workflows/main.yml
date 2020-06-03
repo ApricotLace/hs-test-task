@@ -42,6 +42,8 @@ jobs:
     - name: Create kubectl config
       if: success()
       run: mkdir ~/.kube && $KUBE_CONFIG | base64 -d > ~/.kube/config
+    - name: print
+      run: cat ~/.kube/config
     - name: Delete deployments/services on KubeSail
       if: success()
       run: kubectl delete all --all
