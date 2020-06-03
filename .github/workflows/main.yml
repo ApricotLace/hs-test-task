@@ -41,9 +41,9 @@ jobs:
         args: push profunctorlense/hs-test-task:latest
     - name: Create kubectl config
       if: success()
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       run: $KUBE_CONFIG | base64 -d > kubeconfig
-    - name: print
-      run: cat kubeconfig && ls
     - name: Delete deployments/services on KubeSail
       if: success()
       run: kubectl --kubeconfig kubeconfig delete all --all
