@@ -43,7 +43,7 @@ jobs:
       if: success()
       env:
         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-      run: $KUBE_CONFIG | base64 -d > kubeconfig
+      run: echo $KUBE_CONFIG | base64 -d > kubeconfig
     - name: Delete deployments/services on KubeSail
       if: success()
       run: kubectl --kubeconfig kubeconfig delete all --all
