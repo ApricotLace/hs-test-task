@@ -18,7 +18,7 @@
     [:body
      [:nav {:class "navbar navbar-expand-md navbar-light fixed-top bg-light"}
       [:div {:class "container-fluid"}
-       [:a {:href "/" :class "navbar-brand"} "HS-TEST-TASK-K8S-TEST!"]
+       [:a {:href "/" :class "navbar-brand"} "HS-TEST-TASK-K8S-TEST 2!!!"]
        [:div {:class "navbar-nav mr-auto" :style (if (= title "main-page") "" "display: none;")}
         [:a {:href "/add-patient" :class "nav-link"} "Add patient"]]]]
      [:main {:class "container p-5"}
