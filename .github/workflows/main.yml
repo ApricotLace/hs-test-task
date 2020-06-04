@@ -23,7 +23,7 @@ jobs:
     - name: Run tests
       env:
         database-url: ${{ secrets.TEST_DB_URL }}
-      run: docker run -p 7500:5432 -e POSTGRES_USER=user -e POSTGRES_DB=tests -e POSTGRES_PASSWORD=password postgres:alpine & lein test
+      run: docker run -p 7500:5432 -e POSTGRES_USER=user -e POSTGRES_DB=tests -e POSTGRES_PASSWORD=password postgres:alpine & docker ps & lein test
     - name: Build
       if: success()
       run: lein uberjar
