@@ -13,5 +13,5 @@
 (defn -main []
   (migrate)
   (try
-    (jetty/run-jetty application {:port (Integer. (env :port 7001)) :join? false})
+    (jetty/run-jetty application {:port (Integer. (env :port 7000)) :join? false})
     (catch Exception e (println e))))
