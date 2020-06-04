@@ -20,7 +20,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: lein deps
+    - name: Run test DB
+      run: docker run -p 7500:5432 -e POSTGRES_USER=user -e POSTGRES_DB=tests -e POSTGRES_PASSWORD=password postgres:alpine
     - name: Run tests
+      env:
+        database-url: ${{ secrets.TEST_DB_URL }}
       run: lein test
     - name: Build
       if: success()
