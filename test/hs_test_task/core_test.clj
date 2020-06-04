@@ -2,7 +2,7 @@
   (:require [clojure.test :refer :all]
             [hs-test-task.views.patient-card :refer [build-patientcard]]
             [hs-test-task.models.migration :refer :all]
-            [hs-test-task.models.patient :refer [get-patient-by-id]]
+            [hs-test-task.models.patient :refer [get-patient-by-id db-spec]]
             [clojure.string]
             [hs-test-task.controllers.patient :refer [routes]]
             [ring.mock.request :as rmock]
@@ -71,6 +71,7 @@
 
 (deftest handler-tests
   (testing "Migrations"
+    (println "DB_URL" db-spec)
     (when (not (migrated?)) (migrate))
     (is (= true (migrated?))))
 
