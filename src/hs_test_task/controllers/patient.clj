@@ -98,7 +98,10 @@
 (defn edit-patient [params flash flash-params]
   (if (not (nil? flash))
     (render-layout "edit-patient" flash (render-patient-form flash-params "Edit patient"))
-    (let [patient (model/get-patient-by-id (Integer/parseInt (:user-id params)))]
+    (let [user-id (:user-id params)
+          patient (if (number? (try (Integer/parseInt user-id) (catch Exception _ nil)))
+                   (model/get-patient-by-id (Integer/parseInt (:user-id params)))
+                   nil)]
       (if (nil? patient)
         (route/not-found (not-found))
         (render-layout "edit-patient" nil
@@ -108,7 +111,9 @@
                          ))))))
 
 (defn delete-patient [id]
-  (let [patient (model/get-patient-by-id (Integer/parseInt id))]
+  (let [patient (if (number? (try (Integer/parseInt id) (catch Exception _ nil)))
+                 (model/get-patient-by-id (Integer/parseInt id))
+                 nil)]
     (if (nil? patient)
       (route/not-found (not-found))
       (render-layout "delete-patient" nil (build-delete-confirmation id)))))

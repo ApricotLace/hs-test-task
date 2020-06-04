@@ -9,10 +9,11 @@
                  [environ "1.1.0"]
                  [compojure "1.6.0"]
                  [ring/ring-jetty-adapter "1.8.1"]
+                 [ring/ring-mock "0.4.0"]
                  [hiccup "1.0.5"]
                  [honeysql "1.0.444"]
                  [ring/ring-defaults "0.3.2" :exclusions [ring/ring-core]]
-                 [formative "0.8.9"]
+                 [formative "0.8.8"]
                  [clj-time "0.15.2"]]
   :main ^:skip-aot hs-test-task.core
   :min-lein-version "2.0.0"

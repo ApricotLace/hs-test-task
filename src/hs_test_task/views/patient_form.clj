@@ -1,7 +1,8 @@
 (ns hs-test-task.views.patient-form
   (:require [formative.core :as f]
             [hiccup.core :refer [html]]
-            [clj-time.core :as time]))
+            [clj-time.core :as time]
+            [clj-time.coerce :as c]))
 
 (defn add-patient-form-spec [header] {:fields [{:name :h1 :type :heading :text header}
                                      {:name :full-name}
@@ -16,7 +17,7 @@
                                      {:name :br :type :heading}
                                      {:name :br :type :heading}]
                             :validations [[:required [:full-name :gender :date-of-birth :address :health-insurance-card-id]]
-                                          [:before (time/now) [:date-of-birth] "The entered date is greater than the current"]]})
+                                          [:before (c/to-date (time/now)) [:date-of-birth] "The entered date is greater than the current"]]})
 
 (defn render-patient-form
   ([params header]
