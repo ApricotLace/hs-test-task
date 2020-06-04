@@ -29,8 +29,6 @@ jobs:
     - name: Install dependencies
       run: lein deps
     - name: Run tests
-      env:
-        database-url: ${{ secrets.TEST_DB_URL }}
       run: lein test
     - name: Build
       if: success()
