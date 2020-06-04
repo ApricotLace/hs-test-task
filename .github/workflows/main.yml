@@ -29,7 +29,9 @@ jobs:
     - name: Install dependencies
       run: lein deps
     - name: Run tests
-      run: lein test
+      env:
+        POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+      run: echo $POSTGRES_PORT && lein test
     - name: Build
       if: success()
       run: lein uberjar
