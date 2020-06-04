@@ -14,7 +14,7 @@
       pos?))
 
 (defn migrate []
-  (println "DB_URL:" db-spec)
+  (with-out-str (println "DB_URL" db-spec))
   (when (not (migrated?))
     (db/db-do-commands db-spec
                        (db/create-table-ddl
