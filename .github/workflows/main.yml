@@ -23,6 +23,8 @@ jobs:
           POSTGRES_USER: user
           POSTGRES_DB: tests
           POSTGRES_PASSWORD: password
+        ports: 
+          - 5432:5432
 
     steps:
     - uses: actions/checkout@v2
@@ -30,8 +32,8 @@ jobs:
       run: lein deps
     - name: Run tests
       env:
-        POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
-      run: echo $POSTGRES_PORT && lein test
+        database-url: ${{ secrets.TEST_DB_URL }}
+      run: lein test
     - name: Build
       if: success()
       run: lein uberjar
